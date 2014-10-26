@@ -9,14 +9,15 @@ define(['../bower_components/skatejs/dist/skate.js', './simulation.js'], functio
 
     function Life (el) {
         var simulation;
-        var PIXEL_SIZE = 5;
-        var FRAME_RATE = 100; //ms
+        var PIXEL_SIZE = el.hasAttribute('data-pixel-size') ? el.getAttribute('data-pixel-size') : 5;
+        var FRAME_RATE = el.hasAttribute('data-ms-per-frame') ? el.getAttribute('data-ms-per-frame') : 1000 / 30; //ms
         var context;
 
         function loop () {
-            simulation.step();
-            draw();
-            setTimeout(loop, FRAME_RATE);
+            setInterval(function () {
+                simulation.step();
+                draw();
+            }, FRAME_RATE);
         }
 
         function draw() {
@@ -43,14 +44,26 @@ define(['../bower_components/skatejs/dist/skate.js', './simulation.js'], functio
             }
         }
 
-        function drawCell(x, y, occupied) {
-            context.fillStyle = occupied ? 'black' : 'white';
+        function drawCell(x, y, state) {
+            context.fillStyle = state.alive ? getColors().alive :
+                state.touched ? getColors().touched : getColors().dead;
             context.fillRect(x * PIXEL_SIZE, y * PIXEL_SIZE, PIXEL_SIZE, PIXEL_SIZE);
+        }
+
+        function getColors() {
+            return {
+                alive: el.hasAttribute('data-alive-color') ? el.getAttribute('data-alive-color') : 'rgb(220, 220, 220)',
+                touched: el.hasAttribute('data-touched-color') ? el.getAttribute('data-touched-color') : 'rgb(245, 245, 245)',
+                dead: el.hasAttribute('data-dead-color') ? el.getAttribute('data-dead-color') : 'white'
+            }
         }
 
         return {
             init: function () {
-                simulation = new Simulation(getSize().width / PIXEL_SIZE, getSize().height / PIXEL_SIZE);
+                simulation = new Simulation(
+                        Math.floor(getSize().noUnits().width / PIXEL_SIZE),
+                        Math.floor(getSize().noUnits().height / PIXEL_SIZE)
+                );
                 simulation.start();
                 this.resize();
 
@@ -64,7 +77,10 @@ define(['../bower_components/skatejs/dist/skate.js', './simulation.js'], functio
                 el._canvas.style.height = newSize.height;
                 el._canvas.setAttribute('width', newSize.noUnits().width);
                 el._canvas.setAttribute('height', newSize.noUnits().height);
-                simulation.resize(newSize.noUnits().width / PIXEL_SIZE, newSize.noUnits().height / PIXEL_SIZE);
+                simulation.resize(
+                    Math.floor(getSize().noUnits().width / PIXEL_SIZE),
+                    Math.floor(getSize().noUnits().height / PIXEL_SIZE)
+                );
             }
         }
     }
