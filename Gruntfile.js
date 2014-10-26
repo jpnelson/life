@@ -6,9 +6,10 @@ module.exports = function (grunt) {
         requirejs: {
             compile: {
                 options: {
-                    baseUrl: "./",
-                    name: "src/life.js", // assumes a production build using almond
-                    out: "dist/life.js"
+                    baseUrl: './src',
+                    name: 'life',
+                    out: 'dist/life.js',
+                    optimize: 'none'
                 }
             }
         }

@@ -13,7 +13,9 @@
     <life></life>
     <script src="../bower_components/requirejs/require.js"></script>
     <script>
-        require(['../src/life.js']);
+        require(['../dist/life.js'], function(a) {
+            console.log(a);
+        });
     </script>
 </body>
 </html>
