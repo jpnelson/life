@@ -1,13 +1,14 @@
 define(['../bower_components/skatejs/dist/skate.js', './simulation.js', './debounce.js'], function(skate, Simulation, debounce) {
 
-    window.onresize = function () {
-        debounce(function () {
-            var lifeElements = document.querySelectorAll('life');
-            for (i = 0; i < lifeElements.length; ++i) {
-                lifeElements[i]._life.resize();
-            }
-        }, 50);
-    };
+
+    var debouncedResize = debounce(function () {
+        var lifeElements = document.querySelectorAll('life');
+        for (i = 0; i < lifeElements.length; ++i) {
+            lifeElements[i]._life.resize();
+        }
+    }, 50);
+
+    window.onresize = debouncedResize;
 
     function Life (el) {
         var simulation;
