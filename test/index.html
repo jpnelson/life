@@ -1,11 +1,19 @@
 <html>
 <head>
-
+    <style>
+        life {
+            display: inline-block;
+            width: 100%;
+            height: 200px;
+        }
+    </style>
 </head>
 
 <body>
-    <div style="width: 100%">
-        <life></life>
-    </div>
+    <life></life>
+    <script src="../bower_components/requirejs/require.js"></script>
+    <script>
+        require(['../src/life.js']);
+    </script>
 </body>
 </html>
