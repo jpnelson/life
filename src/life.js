@@ -1,15 +1,17 @@
-define(['../bower_components/skatejs/dist/skate.js', './simulation.js'], function(skate, Simulation) {
+define(['../bower_components/skatejs/dist/skate.js', './simulation.js', './debounce.js'], function(skate, Simulation, debounce) {
 
     window.onresize = function () {
-        var lifeElements = document.querySelectorAll('life');
-        for (i = 0; i < lifeElements.length; ++i) {
-            lifeElements[i]._life.resize();
-        }
+        debounce(function () {
+            var lifeElements = document.querySelectorAll('life');
+            for (i = 0; i < lifeElements.length; ++i) {
+                lifeElements[i]._life.resize();
+            }
+        }, 50);
     };
 
     function Life (el) {
         var simulation;
-        var PIXEL_SIZE = el.hasAttribute('data-pixel-size') ? el.getAttribute('data-pixel-size') : 5;
+        var PIXEL_SIZE = el.hasAttribute('data-pixel-size') ? el.getAttribute('data-pixel-size') : 8;
         var FRAME_RATE = el.hasAttribute('data-ms-per-frame') ? el.getAttribute('data-ms-per-frame') : 1000 / 30; //ms
         var context;
 
@@ -97,6 +99,11 @@ define(['../bower_components/skatejs/dist/skate.js', './simulation.js'], functio
             var life = new Life(el);
             el._life = life;
             life.init();
+        },
+        prototype: {
+            resize: function () {
+                this._life.resize();
+            }
         }
     });
 });
