@@ -8,8 +8,7 @@ module.exports = function (grunt) {
                 options: {
                     baseUrl: './src',
                     name: 'life',
-                    out: 'dist/life.js',
-                    optimize: 'none'
+                    out: 'dist/life.js'
                 }
             }
         }

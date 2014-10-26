@@ -2,15 +2,17 @@
 
 ## To use:
 * Ensure you have requirejs loaded
-* Require `src/life.js`
+* Require `dist/life.js`
 * Insert an element `<life></life>` into the DOM somewhere
 
 For example:
 ```
 <life></life>
 <script src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.15/require.js"></script>
+<script src="../bower_components/life/dist/life.js"></script>
+
 <script>
-    require(['dist/life.js']);
+    require(['life']);
 </script>
 ```
 
