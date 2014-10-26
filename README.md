@@ -1,7 +1,18 @@
 # Conway's game of life bower component
 
-To use:
-* Insert an element `<life></life` into the DOM somewhere
+## To use:
+* Ensure you have requirejs loaded
+* Require `src/life.js`
+* Insert an element `<life></life>` into the DOM somewhere
+
+For example:
+```
+<life></life>
+<script src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.15/require.js"></script>
+<script>
+    require(['dist/life.js']);
+</script>
+```
 
 You're done!
 

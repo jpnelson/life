@@ -1,0 +1,22 @@
+{
+  "name": "life",
+  "version": "0.1.0",
+  "description": "## To use: * Ensure you have requirejs loaded * Require `src/life.js` * Insert an element `<life></life>` into the DOM somewhere",
+  "main": "Gruntfile.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cyberdash/life.git"
+  },
+  "author": "Joshua Nelson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cyberdash/life/issues"
+  },
+  "homepage": "https://github.com/cyberdash/life"
+}

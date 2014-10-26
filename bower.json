@@ -5,7 +5,7 @@
     "Joshua Nelson <jonelson@atlassian.com>"
   ],
   "description": "Conway's game of life",
-  "main": "life.js",
+  "main": "src/life.js",
   "moduleType": [
     "amd"
   ],
